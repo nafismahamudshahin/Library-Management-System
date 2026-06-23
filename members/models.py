@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date, datetime
 from django.contrib.auth.models import BaseUserManager , AbstractBaseUser , AbstractUser
 from members.managers import CustomUserManager
 # Create your models here.
@@ -15,6 +16,8 @@ class Member(AbstractUser):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=13 , blank=True)
     address = models.TextField(max_length=255 , blank=True)
+    membership_date = models.DateField(auto_now_add=True , null=True , blank=True )
+    created_at = models.DateTimeField(auto_now_add=True , null=True , blank=True)
 
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'
