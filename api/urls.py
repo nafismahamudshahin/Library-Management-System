@@ -1,8 +1,15 @@
 from django.urls import path,include
-from rest_framework import routers
 from members.views import AuthorModelViewSet
+from books.views import BookModelViewSet
+from rest_framework_nested import routers
+
+
 router = routers.DefaultRouter()
 router.register("authors", AuthorModelViewSet)
+router.register('books',BookModelViewSet)
+
+
+
 
 urlpatterns = [
     path('',include(router.urls)),
