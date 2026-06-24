@@ -1,3 +1,14 @@
 from django.db import models
-
+from books.models import Book
+from members.models import Member
 # Create your models here.
+class BorrowRecord(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.PROTECT , related_name="borrow_record")
+    member = models.ForeignKey(Member, on_delete=models.CASCADE , related_name="borrowings")
+    borrow_date = models.DateField(auto_now_add=True)
+    due_date = models.DateField(auto_now_add=True)
+    return_date = models.DateField()
+    is_returned = models.BooleanField()
+    is_created = models.Date()
+
+
