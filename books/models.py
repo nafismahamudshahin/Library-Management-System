@@ -6,6 +6,9 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
+    def __str__(self):
+        return self.name
+
 class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Author , on_delete=models.CASCADE, related_name='books')
@@ -15,4 +18,8 @@ class Book(models.Model):
     stock = models.PositiveIntegerField(blank=True)
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
 
