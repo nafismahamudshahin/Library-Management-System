@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from books.models import Book ,Category
+from books.models import Book ,Category , Review
 from members.serializers import AuthorSerializer
 
 # Category serializer:
@@ -24,3 +24,8 @@ class BookSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         author_id = self.context['author_id']
         return Book.objects.create(author_id=author_id , **validated_data)
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['id','books','member','review_context','review_context',]
