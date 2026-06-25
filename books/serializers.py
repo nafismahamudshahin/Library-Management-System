@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from books.models import Book ,Category
+from members.serializers import AuthorSerializer
 
 # Category serializer:
 class CategorySerializer(serializers.ModelSerializer):
@@ -9,6 +10,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 # Book serializer:
 class RootLabelBookSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer()
+    category = CategorySerializer()
     class Meta:
         model = Book
         fields = ['id','title','isbn','author','category','published_year','stock','created_at']
