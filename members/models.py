@@ -13,6 +13,7 @@ class Author(models.Model):
         return self.name
 
 class Member(AbstractUser):
+    
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=13 , blank=True)
     address = models.TextField(max_length=255 , blank=True)

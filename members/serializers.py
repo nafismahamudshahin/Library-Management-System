@@ -8,7 +8,17 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = ['id','name','biography','nationality','birth_date','created_at']
 
 # member serializer
-class MemberSerializer(serializers.ModelSerializer):
+
+class GetMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
-        fields = ['first_name','last_name','email','phone','address']
+        fields = ['username','first_name','last_name','email','phone','address']
+
+class AddMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Member
+        fields = ['username','first_name','last_name','email','password','phone','address']
+    
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        return Member.objects.create_user(password=password,**validated_data)
