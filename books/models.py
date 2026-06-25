@@ -1,5 +1,5 @@
 from django.db import models
-from members.models import Author
+from members.models import Author , Member
 # Create your models here.
 
 class Category(models.Model):
@@ -22,4 +22,8 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
-
+class Review(models.Model):
+    book = models.ForeignKey(Book , on_delete=models.CASCADE , related_name="reviews")
+    member = models.ForeignKey(Member , on_delete=models.CASCADE , related_name="reviews")
+    review_context = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)

@@ -22,5 +22,4 @@ urlpatterns = [
     path('',include(router.urls)),
     path('',include(author_router.urls)),
     path('',include(borrow_router.urls)),
-    # path('members/',GetAllMember.as_view(),name="members"),
 ]
