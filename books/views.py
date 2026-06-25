@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from books.models import Book , Category
 from books.serializers import BookSerializer , CategorySerializer , RootLabelBookSerializer
+from rest_framework.filters import SearchFilter
 # Create your views here.
 # category viewset:
 class CagegoryModelViewSet(ModelViewSet):
@@ -12,6 +13,8 @@ class CagegoryModelViewSet(ModelViewSet):
 class RootLabelBookViewSet(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = RootLabelBookSerializer
+    filter_backends =[SearchFilter]
+    search_fields = ['title','author__name','isbn','category__name']
 
 
 class BookModelViewSet(ModelViewSet):
