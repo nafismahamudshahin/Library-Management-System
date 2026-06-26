@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
-from books.models import Book , Category
-from books.serializers import BookSerializer , CategorySerializer , RootLabelBookSerializer
+from books.models import Book , Category , Review
+from books.serializers import BookSerializer , CategorySerializer , RootLabelBookSerializer , ReviewSerializer
 from rest_framework.filters import SearchFilter
 # Create your views here.
 
 # category viewset:
-class CagegoryModelViewSet(ModelViewSet):
+class CategoryModelViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
@@ -31,3 +31,6 @@ class BookModelViewSet(ModelViewSet):
         return {'author_id':self.kwargs['author_pk']}
 
 
+class ReviewViewSet(ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
