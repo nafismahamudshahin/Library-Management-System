@@ -32,5 +32,10 @@ class BookModelViewSet(ModelViewSet):
 
 
 class ReviewViewSet(ModelViewSet):
-    queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        return Review.objects.filter(member_id=self.kwargs['member_pk'],book_id=self.kwargs['book_pk'])
+    
+    def get_serializer_context(self):
+        return {'book_id':self.kwargs['book_pk'],'member_id':self.kwargs['member_pk']}
